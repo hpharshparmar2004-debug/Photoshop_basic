@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adobe Photoshop Tools &amp; Basics — CBT Examination Portal</title>
+    <title>PHOTOSHOP 7.0 TOOLS & SHORTCUTS - CBT Examination Portal</title>
     <style>
         :root {
-            --primary-blue: #0f172a;
-            --secondary-blue: #2563eb;
-            --light-blue: #eff6ff;
-            --border-color: #cbd5e1;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --success-green: #16a34a;
-            --warning-red: #dc2626;
-            --review-purple: #9333ea;
-            --not-visited: #94a3b8;
-            --bg-color: #f8fafc;
+            --primary: #001e36;
+            --primary-dark: #00101f;
+            --primary-light: #e6f0fa;
+            --secondary: #3388ff;
+            --success: #0e9f6e;
+            --warning: #f59e0b;
+            --danger: #e02424;
+            --purple: #7e3af2;
+            --grey-light: #f3f4f6;
+            --grey: #9ca3af;
+            --grey-dark: #374151;
+            --text-main: #111827;
+            --bg-gradient: linear-gradient(135deg, #f0f4ff 0%, #dbeafe 100%);
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
         }
 
         * {
@@ -26,271 +31,321 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        body, html {
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .screen {
             display: none;
-            width: 100%;
-            height: 100vh;
+            flex: 1;
             flex-direction: column;
         }
 
         .screen.active {
-            display: flex !important;
+            display: flex;
         }
 
-        #login-screen {
-            justify-content: center;
+        /* --- LOGIN SCREEN --- */
+        .login-container {
+            flex: 1;
+            display: flex;
             align-items: center;
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            justify-content: center;
             padding: 20px;
         }
 
         .login-card {
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
             padding: 40px;
             border-radius: 16px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow);
             width: 100%;
-            max-width: 420px;
+            max-width: 450px;
+            animation: fadeIn 0.5s ease-out;
         }
 
-        .login-card h2 {
-            color: var(--primary-blue);
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h1 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            font-weight: 700;
             margin-bottom: 8px;
-            font-size: 22px;
-            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .login-card p {
-            color: var(--text-light);
-            font-size: 14px;
-            text-align: center;
-            margin-bottom: 24px;
+        .login-header p {
+            font-size: 0.95rem;
+            color: var(--grey-dark);
         }
 
         .form-group {
             margin-bottom: 20px;
-            position: relative;
         }
 
         .form-group label {
             display: block;
-            font-size: 13px;
+            margin-bottom: 8px;
             font-weight: 600;
-            margin-bottom: 6px;
-            color: var(--text-dark);
+            font-size: 0.9rem;
+            color: var(--grey-dark);
+        }
+
+        .input-wrapper {
+            position: relative;
         }
 
         .form-control {
             width: 100%;
-            padding: 12px 14px;
+            padding: 12px 16px;
+            padding-right: 45px;
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            font-size: 15px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            outline: none;
+            background: #fff;
         }
 
         .form-control:focus {
-            outline: none;
-            border-color: var(--secondary-blue);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(51, 136, 255, 0.15);
         }
 
         .toggle-password {
             position: absolute;
-            right: 12px;
-            top: 38px;
-            background: none;
-            border: none;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
             cursor: pointer;
-            color: var(--text-light);
-            font-size: 13px;
-            font-weight: 600;
+            color: var(--grey);
+            font-size: 0.9rem;
+            user-select: none;
         }
 
         .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
-            padding: 12px;
-            background-color: var(--secondary-blue);
+            padding: 12px 20px;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: background 0.3s, transform 0.1s;
+            box-shadow: 0 4px 6px -1px rgba(0, 30, 54, 0.2);
         }
 
         .btn:hover {
-            background-color: #1d4ed8;
+            background: var(--primary-dark);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
         }
 
         .error-msg {
-            color: var(--warning-red);
-            font-size: 13px;
+            background: #fee2e2;
+            color: var(--danger);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
             text-align: center;
-            margin-top: 12px;
             display: none;
+            border: 1px solid #f87171;
         }
 
-        .demo-credentials {
-            margin-top: 20px;
+        .credentials-hint {
+            margin-top: 25px;
             padding: 12px;
-            background: var(--light-blue);
+            background: var(--primary-light);
             border-radius: 8px;
-            font-size: 12px;
-            color: var(--primary-blue);
-            line-height: 1.5;
+            font-size: 0.8rem;
+            color: var(--primary);
+            line-height: 1.4;
         }
 
-        #instructions-screen {
-            justify-content: center;
+        /* --- INSTRUCTIONS / CONFIRMATION SCREEN --- */
+        .instruction-container {
+            flex: 1;
+            display: flex;
             align-items: center;
+            justify-content: center;
             padding: 20px;
-            overflow-y: auto;
-            background: var(--bg-color);
         }
 
         .instruction-card {
-            background: white;
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
             width: 100%;
-            margin: auto;
+            max-width: 700px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        .instruction-card h2 {
-            color: var(--primary-blue);
-            margin-bottom: 5px;
-        }
-
-        .instruction-card h4 {
-            color: var(--text-light);
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .exam-details-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 12px;
-            margin-bottom: 20px;
-            background: var(--light-blue);
-            padding: 16px;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .instruction-rules {
-            margin-bottom: 25px;
-            max-height: 220px;
+        .instruction-scroll {
             overflow-y: auto;
-            padding-right: 10px;
+            margin-bottom: 20px;
+            padding-right: 5px;
         }
 
-        .instruction-rules ul {
-            padding-left: 20px;
-            font-size: 14px;
-            color: var(--text-dark);
+        .instruction-scroll h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .instruction-scroll ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
             line-height: 1.6;
+            color: var(--grey-dark);
+            font-size: 0.95rem;
         }
 
-        .instruction-rules li {
-            margin-bottom: 8px;
+        .candidate-summary {
+            background: var(--grey-light);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            font-size: 0.9rem;
         }
 
-        .checkbox-container {
+        .candidate-summary div span {
+            font-weight: 600;
+            color: var(--grey-dark);
+        }
+
+        .checkbox-group {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-bottom: 20px;
-            font-size: 14px;
             font-weight: 500;
+            font-size: 0.95rem;
             cursor: pointer;
         }
 
-        #exam-screen {
-            height: 100vh;
-            overflow: hidden;
-            flex-direction: column;
+        .checkbox-group input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--primary);
         }
 
-        .fullscreen-bar {
-            background: #0f172a;
-            color: white;
-            font-size: 12px;
-            padding: 4px 15px;
-            text-align: right;
-            flex-shrink: 0;
-        }
-        .fullscreen-bar button {
-            background: none; border: none; color: #93c5fd; cursor: pointer; text-decoration: underline; font-size: 12px;
-        }
-
-        .exam-header {
-            background: var(--primary-blue);
-            color: white;
-            padding: 12px 24px;
+        /* --- CBT EXAMINATION INTERFACE --- */
+        .cbt-header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            flex-shrink: 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
-        .exam-header h3 {
-            font-size: 18px;
+        .cbt-title h2 {
+            font-size: 1.1rem;
+            color: var(--primary);
         }
 
-        .timer-badge {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 15px;
-            letter-spacing: 0.5px;
+        .cbt-title p {
+            font-size: 0.8rem;
+            color: var(--grey);
         }
 
-        .exam-body {
+        .cbt-timer-submit {
             display: flex;
-            flex: 1;
-            overflow: hidden;
-            width: 100%;
+            align-items: center;
+            gap: 20px;
         }
 
-        .question-container {
+        .timer-box {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            border: 1px solid #b8d4f4;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            box-shadow: 0 4px 6px -1px rgba(224, 36, 36, 0.2);
+        }
+        .btn-danger:hover {
+            background: #c81e1e;
+        }
+
+        .cbt-body {
             flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            height: calc(100vh - 70px);
+            overflow: hidden;
+        }
+
+        @media(max-width: 900px) {
+            .cbt-body {
+                grid-template-columns: 1fr;
+                overflow-y: auto;
+            }
+            .palette-sidebar {
+                border-left: none !important;
+                border-top: 1px solid var(--border-color);
+                height: auto !important;
+            }
+        }
+
+        .question-main {
+            padding: 30px;
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
-            padding: 24px;
-            overflow-y: auto;
-            background: white;
+            justify-content: space-between;
         }
 
         .question-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
-            font-size: 14px;
-            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--grey);
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 12px;
+            padding-bottom: 10px;
         }
 
         .question-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 24px;
-            line-height: 1.5;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            font-weight: 500;
         }
 
         .options-list {
@@ -300,948 +355,953 @@
             margin-bottom: 30px;
         }
 
-        .option-item {
+        .option-card {
             display: flex;
             align-items: center;
             padding: 14px 18px;
+            background: var(--card-bg);
             border: 2px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.2s;
-            font-size: 15px;
+            transition: all 0.2s ease;
+            font-size: 1rem;
         }
 
-        .option-item:hover {
-            border-color: var(--secondary-blue);
-            background-color: var(--light-blue);
-        }
-
-        .option-item input {
-            margin-right: 14px;
-            transform: scale(1.2);
-            accent-color: var(--secondary-blue);
-        }
-
-        .option-item.selected {
-            border-color: var(--secondary-blue);
-            background-color: var(--light-blue);
-            font-weight: 500;
-        }
-
-        .exam-footer-controls {
-            margin-top: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .btn-group-left, .btn-group-right {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .btn-action {
-            padding: 10px 18px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            border: 1px solid var(--border-color);
-            background: white;
-            color: var(--text-dark);
-            transition: all 0.2s;
-        }
-
-        .btn-action:hover {
-            background: #f1f5f9;
-        }
-
-        .btn-primary-action {
-            background: var(--secondary-blue);
-            color: white;
-            border: none;
-        }
-
-        .btn-primary-action:hover {
-            background: #1d4ed8;
-        }
-
-        aside.palette-sidebar {
-            width: 320px;
+        .option-card:hover {
+            border-color: var(--secondary);
             background: #f8fafc;
+        }
+
+        .option-card.selected {
+            border-color: var(--secondary);
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .option-marker {
+            width: 30px;
+            height: 30px;
+            background: var(--grey-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--grey-dark);
+        }
+
+        .option-card.selected .option-marker {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .question-nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: space-between;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn-secondary {
+            background: var(--grey-light);
+            color: var(--grey-dark);
+            box-shadow: none;
+            width: auto;
+            flex: 1;
+            min-width: 120px;
+        }
+        .btn-secondary:hover {
+            background: var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-warning {
+            background: var(--purple);
+            box-shadow: 0 4px 6px -1px rgba(126, 58, 242, 0.2);
+            width: auto;
+            flex: 1;
+            min-width: 150px;
+        }
+        .btn-warning:hover {
+            background: #6b21a8;
+        }
+
+        /* --- PALETTE SIDEBAR --- */
+        .palette-sidebar {
+            background: var(--card-bg);
             border-left: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
-            padding: 20px;
-            flex-shrink: 0;
+            height: 100%;
         }
 
         .palette-header {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--text-dark);
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            background: #f9fafb;
         }
 
         .palette-legend {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
-            margin-bottom: 15px;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
         }
 
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .legend-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 3px;
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .palette-grid-container {
+            padding: 15px 20px;
+            overflow-y: auto;
+            flex: 1;
         }
 
         .palette-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 8px;
-            overflow-y: auto;
-            flex: 1;
-            padding-right: 4px;
-            max-height: calc(100vh - 280px);
         }
 
         .palette-btn {
             aspect-ratio: 1;
-            border-radius: 6px;
             border: 1px solid var(--border-color);
-            background: white;
+            border-radius: 6px;
+            background: var(--grey-light);
             font-weight: 600;
-            font-size: 13px;
+            font-size: 0.85rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: transform 0.1s;
         }
 
-        .palette-btn.current {
-            border: 2px solid var(--secondary-blue);
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+        .palette-btn:hover {
+            transform: scale(1.05);
         }
 
-        .palette-btn.not-visited { background: #ffffff; color: var(--not-visited); border-color: var(--not-visited); }
-        .palette-btn.visited-not-answered { background: #fee2e2; color: var(--warning-red); border-color: #fca5a5; }
-        .palette-btn.answered { background: #dcfce7; color: var(--success-green); border-color: #86efac; }
-        .palette-btn.marked { background: #f3e8ff; color: var(--review-purple); border-color: #d8b4fe; }
-        .palette-btn.answered-marked { background: linear-gradient(135deg, #dcfce7 50%, #f3e8ff 50%); color: var(--primary-blue); border-color: var(--review-purple); }
+        /* Palette Status Colors */
+        .palette-btn.not-visited { background: var(--grey-light); color: var(--grey-dark); }
+        .palette-btn.unanswered { background: #fee2e2; color: var(--danger); border-color: #f87171; }
+        .palette-btn.answered { background: #d1fae5; color: var(--success); border-color: #34d399; }
+        .palette-btn.marked { background: #ede9fe; color: var(--purple); border-color: #a78bfa; }
+        .palette-btn.answered-marked { background: linear-gradient(135deg, #d1fae5 50%, #ede9fe 50%); color: var(--primary); border-color: var(--purple); }
+        .palette-btn.current { border: 2px solid var(--secondary) !important; box-shadow: 0 0 0 2px rgba(51, 136, 255, 0.2); }
 
-        .submit-exam-btn {
-            margin-top: 15px;
-            background: var(--success-green);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-        }
-        .submit-exam-btn:hover { background: #15803d; }
-
+        /* --- MODALS --- */
         .modal-overlay {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
             display: none;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             z-index: 1000;
+            padding: 20px;
         }
 
         .modal-card {
             background: white;
             padding: 30px;
-            border-radius: 12px;
+            border-radius: 16px;
             width: 100%;
             max-width: 450px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            animation: scaleUp 0.3s ease-out;
         }
 
-        .modal-card h3 { margin-bottom: 15px; color: var(--primary-blue); }
+        .modal-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
         .modal-stats {
+            background: var(--grey-light);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
             display: flex;
             flex-direction: column;
             gap: 8px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        .modal-stats div {
-            display: flex;
-            justify-content: space-between;
-            padding: 6px 10px;
-            background: var(--light-blue);
-            border-radius: 6px;
-        }
-        .modal-buttons {
-            display: flex;
-            gap: 10px;
+            font-size: 0.9rem;
         }
 
-        #result-screen {
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* --- RESULT SCREEN --- */
+        .result-container {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            overflow-y: auto;
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .result-header h1 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
         .result-card {
             background: white;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            max-width: 650px;
-            width: 100%;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
             text-align: center;
-            margin: auto;
+            border-top: 4px solid var(--secondary);
         }
 
-        .result-card h2 { color: var(--primary-blue); margin-bottom: 6px; }
-        .score-circle {
-            width: 120px; height: 120px;
-            border-radius: 50%;
-            background: var(--light-blue);
-            color: var(--secondary-blue);
+        .result-card.success { border-top-color: var(--success); }
+        .result-card.danger { border-top-color: var(--danger); }
+        .result-card.warning { border-top-color: var(--warning); }
+
+        .result-card h4 {
+            font-size: 0.9rem;
+            color: var(--grey);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .result-card .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .performance-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .performance-box h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleUp {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .fullscreen-banner {
+            background: #fff3cd;
+            color: #856404;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 0.85rem;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 20px auto;
-            font-size: 28px;
-            font-weight: 700;
-            border: 4px solid var(--secondary-blue);
+            gap: 15px;
+            border-bottom: 1px solid #ffeeba;
         }
-        .score-circle span { font-size: 13px; font-weight: 500; color: var(--text-light); }
-        
-        .result-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 25px;
-            text-align: left;
-        }
-        .result-item {
-            background: #f8fafc;
-            padding: 12px 16px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            font-size: 14px;
-        }
-        .result-item span { font-weight: 700; float: right; }
 
-        @media(max-width: 768px) {
-            .exam-body { flex-direction: column-reverse; overflow-y: auto; }
-            aside.palette-sidebar { width: 100%; height: 240px; }
-            .palette-grid { max-height: 120px; }
+        .fullscreen-btn {
+            background: #856404;
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .fullscreen-btn:hover {
+            background: #533f03;
         }
     </style>
 </head>
 <body>
 
-    <!-- LOGIN SCREEN -->
-    <div id="login-screen" class="screen active">
-        <div class="login-card">
-            <h2>CBT Examination Portal</h2>
-            <p>Adobe Photoshop Tools, Properties &amp; Basics (100 Questions)</p>
-            <form id="login-form" onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label for="username">Candidate Username</label>
-                    <input type="text" id="username" class="form-control" placeholder="Enter username (e.g. admin100)" required autocomplete="username">
+    <!-- 1. LOGIN SCREEN -->
+    <div id="loginScreen" class="screen active">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <h1>Photoshop 7.0 Tools & Shortcuts</h1>
+                    <p>Computer Based Test | Practice Examination</p>
                 </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" class="form-control" placeholder="Enter password" required autocomplete="current-password">
-                    <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">Show</button>
+                <div id="loginError" class="error-msg">Invalid Username or Password</div>
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" class="form-control" placeholder="Enter username" required autocomplete="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="password" class="form-control" placeholder="Enter password" required autocomplete="current-password">
+                            <span class="toggle-password" onclick="togglePasswordVisibility()">Show</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">Proceed to Instructions</button>
+                </form>
+                <div class="credentials-hint">
+                    <strong>Authorized Credentials:</strong><br>
+                    • Candidate 1: <code>admin100</code> / <code>100</code><br>
+                    • Candidate 2: <code>admin101</code> / <code>101</code>
                 </div>
-                <button type="submit" class="btn">Proceed to Instructions</button>
-                <div id="login-error" class="error-msg">Invalid username or password. Please try again.</div>
-            </form>
-            <div class="demo-credentials">
-                <strong>Demo Credentials:</strong><br>
-                Candidate 1: Username: <code>admin100</code> | Password: <code>100</code><br>
-                Candidate 2: Username: <code>admin101</code> | Password: <code>101</code>
             </div>
         </div>
     </div>
 
-    <!-- INSTRUCTIONS SCREEN -->
-    <div id="instructions-screen" class="screen">
-        <div class="instruction-card">
-            <h2>Examination Instructions</h2>
-            <h4>Adobe Photoshop Mastery Assessment (100 Questions - Bilingual)</h4>
-            
-            <div class="exam-details-grid">
-                <div><strong>Test Scope:</strong> Photoshop Basics, Tools, Properties &amp; Shortcuts</div>
-                <div><strong>Total Questions:</strong> 100 MCQs</div>
-                <div><strong>Duration:</strong> 60 Minutes</div>
-                <div><strong>Maximum Marks:</strong> 100</div>
-                <div><strong>Question Type:</strong> Single-correct MCQ</div>
-                <div><strong>Negative Marking:</strong> None</div>
+    <!-- 2. INSTRUCTIONS SCREEN -->
+    <div id="instructionScreen" class="screen">
+        <div class="instruction-container">
+            <div class="instruction-card">
+                <div class="instruction-scroll">
+                    <h2>Examination Instructions & Confirmation</h2>
+                    <div class="candidate-summary">
+                        <div><span>Candidate ID:</span> <span id="lblCandidateId">--</span></div>
+                        <div><span>Examination Name:</span> Photoshop 7.0 Tools & Shortcuts Practice Set</div>
+                        <div><span>Total Questions:</span> 100</div>
+                        <div><span>Duration:</span> 60 Minutes</div>
+                        <div><span>Maximum Marks:</span> 100</div>
+                        <div><span>Question Type:</span> MCQ</div>
+                    </div>
+                    <ul>
+                        <li>Total Questions: 100</li>
+                        <li>Total Marks: 100</li>
+                        <li>Duration: 60 Minutes</li>
+                        <li>Each question carries 1 mark. There is no negative marking.</li>
+                        <li>Questions and options are randomized for each candidate session.</li>
+                        <li>You can navigate between questions freely using the question palette or Next/Previous buttons.</li>
+                        <li>You can mark questions for review if you wish to revisit them later.</li>
+                        <li>Examination will be submitted automatically when the timer reaches zero.</li>
+                        <li>Results will be displayed strictly after formal submission.</li>
+                    </ul>
+                </div>
+                <label class="checkbox-group">
+                    <input type="checkbox" id="readInstructions" onchange="toggleStartButton()">
+                    I have read and understood the instructions.
+                </label>
+                <button id="startExamBtn" class="btn" disabled onclick="startExamination()">START EXAMINATION</button>
             </div>
-
-            <div class="instruction-rules">
-                <ul>
-                    <li>The clock has been set at the server and the countdown timer at the top right corner of your screen will display remaining time.</li>
-                    <li>The question palette on the right side indicates status: Not Visited, Visited but Not Answered, Answered, Marked for Review.</li>
-                    <li>Click on any question number in the palette to navigate to it instantly.</li>
-                    <li>Select options by clicking radio buttons or option cards.</li>
-                    <li>Use <strong>Save &amp; Next</strong> or <strong>Mark for Review &amp; Next</strong> to record responses.</li>
-                    <li>The examination submits automatically when the timer reaches zero.</li>
-                </ul>
-            </div>
-
-            <label class="checkbox-container">
-                <input type="checkbox" id="accept-instructions" onchange="toggleStartExamBtn()">
-                I have read and understood all instructions. All computer hardware is in proper working condition.
-            </label>
-
-            <button type="button" id="start-exam-btn" class="btn" disabled style="opacity: 0.6; cursor: not-allowed;" onclick="startExamination()">Start Examination</button>
         </div>
     </div>
 
-    <!-- CBT EXAMINATION SCREEN -->
-    <div id="exam-screen" class="screen">
-        <div class="fullscreen-bar">
-            <span>Candidate ID: <strong id="display-candidate">admin</strong></span>
-            <span style="margin-left: 20px;">Mode: CBT Assessment</span>
-            <span style="float: right;"><button onclick="toggleFullscreen()">Toggle Fullscreen</button></span>
+    <!-- 3. CBT EXAMINATION INTERFACE -->
+    <div id="examScreen" class="screen">
+        <div id="fullscreenBanner" class="fullscreen-banner">
+            <span>For the best examination experience, please use fullscreen mode.</span>
+            <button class="fullscreen-btn" onclick="requestFullscreen()">Enter Fullscreen</button>
         </div>
-        <div class="exam-header">
-            <h3>ADOBE PHOTOSHOP TOOLS &amp; BASICS PRACTICE SET</h3>
-            <div class="timer-badge" id="timer-display">60:00</div>
-        </div>
-        <div class="exam-body">
-            <div class="question-container">
-                <div class="question-meta">
-                    <span id="question-number-tag">Question 1 of 100</span>
-                    <span>Marks: +1.0 | Negative: 0.0</span>
-                </div>
-                <div class="question-text" id="question-title-text">
-                    Loading question...
-                </div>
-                <div class="options-list" id="options-container"></div>
-                <div class="exam-footer-controls">
-                    <div class="btn-group-left">
-                        <button class="btn-action" onclick="markForReviewAndNext()">Mark for Review &amp; Next</button>
-                        <button class="btn-action" onclick="clearResponse()">Clear Response</button>
-                    </div>
-                    <div class="btn-group-right">
-                        <button class="btn-action" onclick="previousQuestion()">Previous</button>
-                        <button class="btn-action btn-primary-action" onclick="saveAndNext()">Save &amp; Next</button>
-                    </div>
-                </div>
+        <header class="cbt-header">
+            <div class="cbt-title">
+                <h2>Photoshop 7.0 Tools & Shortcuts</h2>
+                <p>Candidate ID: <span id="headerCandidateId">--</span></p>
             </div>
-
+            <div class="cbt-timer-submit">
+                <div class="timer-box" id="timerDisplay">60 : 00 : 00</div>
+                <button class="btn btn-danger" onclick="confirmSubmitModal()">SUBMIT EXAM</button>
+            </div>
+        </header>
+        <div class="cbt-body">
+            <!-- Question Area -->
+            <main class="question-main">
+                <div>
+                    <div class="question-meta">
+                        <span id="questionCounter">Question 1 of 100</span>
+                        <span>Marks: +1, -0</span>
+                    </div>
+                    <div class="question-text" id="questionText">Loading question...</div>
+                    <div class="options-list" id="optionsList">
+                        <!-- Options generated dynamically -->
+                    </div>
+                </div>
+                <div class="question-nav-buttons">
+                    <button class="btn btn-secondary" onclick="navigateQuestion(-1)">Previous</button>
+                    <button class="btn btn-warning" onclick="markForReviewAndNext()">Mark for Review & Next</button>
+                    <button class="btn btn-secondary" onclick="clearResponse()">Clear Response</button>
+                    <button class="btn" onclick="saveAndNext()">Save & Next</button>
+                </div>
+            </main>
+            <!-- Palette Sidebar -->
             <aside class="palette-sidebar">
                 <div class="palette-header">Question Palette</div>
                 <div class="palette-legend">
-                    <div class="legend-item"><div class="legend-dot" style="background:#ffffff; border:1px solid #94a3b8;"></div><span>Not Visited</span></div>
-                    <div class="legend-item"><div class="legend-dot" style="background:#fee2e2; border:1px solid #fca5a5;"></div><span>Not Answered</span></div>
-                    <div class="legend-item"><div class="legend-dot" style="background:#dcfce7; border:1px solid #86efac;"></div><span>Answered</span></div>
-                    <div class="legend-item"><div class="legend-dot" style="background:#f3e8ff; border:1px solid #d8b4fe;"></div><span>Marked</span></div>
+                    <div class="legend-item"><div class="legend-dot" style="background:var(--grey-light); border:1px solid var(--border-color)"></div> Not Visited</div>
+                    <div class="legend-item"><div class="legend-dot" style="background:#fee2e2; border:1px solid #f87171"></div> Not Answered</div>
+                    <div class="legend-item"><div class="legend-dot" style="background:#d1fae5; border:1px solid #34d399"></div> Answered</div>
+                    <div class="legend-item"><div class="legend-dot" style="background:#ede9fe; border:1px solid #a78bfa"></div> Marked for Review</div>
+                    <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(135deg, #d1fae5 50%, #ede9fe 50%); border:1px solid var(--purple)"></div> Answered + Marked</div>
                 </div>
-                <div class="palette-grid" id="palette-grid"></div>
-                <button class="submit-exam-btn" onclick="openSubmitModal()">Submit Examination</button>
+                <div class="palette-grid-container">
+                    <div class="palette-grid" id="paletteGrid">
+                        <!-- Palette buttons generated dynamically -->
+                    </div>
+                </div>
             </aside>
         </div>
     </div>
 
-    <!-- SUBMISSION CONFIRMATION MODAL -->
-    <div id="submit-modal" class="modal-overlay">
+    <!-- 4. SUBMISSION CONFIRMATION MODAL -->
+    <div id="submitModal" class="modal-overlay">
         <div class="modal-card">
-            <h3>Confirm Examination Submission</h3>
-            <p style="margin-bottom: 15px; font-size: 14px; color: var(--text-light);">Please review your examination summary before final submission:</p>
-            <div class="modal-stats" id="modal-stats-box"></div>
+            <h3>Submit Examination?</h3>
+            <p style="font-size:0.9rem; color:var(--grey-dark); margin-bottom:15px;">Please verify your examination status summary before final submission:</p>
+            <div class="modal-stats" id="modalStats">
+                <div>Answered: <strong id="statAnswered">0</strong></div>
+                <div>Not Answered: <strong id="statUnanswered">0</strong></div>
+                <div>Marked for Review: <strong id="statMarked">0</strong></div>
+                <div>Not Visited: <strong id="statNotVisited">0</strong></div>
+            </div>
             <div class="modal-buttons">
-                <button class="btn-action" style="flex:1;" onclick="closeSubmitModal()">Cancel / Return</button>
-                <button class="btn-action btn-primary-action" style="flex:1; background: var(--success-green);" onclick="confirmFinalSubmission()">Submit Final Answer</button>
+                <button class="btn btn-secondary" onclick="closeSubmitModal()">Cancel</button>
+                <button class="btn" onclick="executeFinalSubmission()">Submit Final Answer</button>
             </div>
         </div>
     </div>
 
-    <!-- RESULT SCREEN -->
-    <div id="result-screen" class="screen">
-        <div class="result-card">
-            <h2>Examination Completed Successfully</h2>
-            <p style="color: var(--text-light); margin-bottom: 15px;">Adobe Photoshop Tools &amp; Basics Assessment</p>
-            
-            <div class="score-circle">
-                <div id="score-val">0</div>
-                <span>Out of 100</span>
+    <!-- 5. RESULT SCREEN -->
+    <div id="resultScreen" class="screen">
+        <div class="result-container">
+            <div class="result-header">
+                <h1>EXAMINATION RESULT</h1>
+                <p>Photoshop 7.0 Tools & Shortcuts | Status: <strong>COMPLETED</strong></p>
             </div>
-
             <div class="result-grid">
-                <div class="result-item">Percentage: <span id="res-percentage">0%</span></div>
-                <div class="result-item">Attempted: <span id="res-attempted">0</span></div>
-                <div class="result-item">Correct Answers: <span id="res-correct">0</span></div>
-                <div class="result-item">Incorrect Answers: <span id="res-incorrect">0</span></div>
-                <div class="result-item" style="grid-column: span 2;">Unattempted Questions: <span id="res-unattempted">100</span></div>
+                <div class="result-card">
+                    <h4>Marks Obtained</h4>
+                    <div class="value" id="resMarks">0 / 100</div>
+                </div>
+                <div class="result-card success">
+                    <h4>Percentage</h4>
+                    <div class="value" id="resPercentage">0.00%</div>
+                </div>
+                <div class="result-card success">
+                    <h4>Correct Answers</h4>
+                    <div class="value" id="resCorrect">0</div>
+                </div>
+                <div class="result-card danger">
+                    <h4>Incorrect / Unattempted</h4>
+                    <div class="value" id="resIncorrect">0</div>
+                </div>
             </div>
-
-            <p id="performance-remark" style="font-weight: 600; color: var(--secondary-blue); margin-bottom: 20px;"></p>
-            <button class="btn" onclick="restartPortal()">Log Out / Restart Examination</button>
+            <div class="performance-box">
+                <h3>Performance Summary</h3>
+                <p id="performanceText" style="font-size:1.05rem; color:var(--grey-dark); line-height:1.5;">Your examination has been submitted successfully.</p>
+                <div style="margin-top:20px;">
+                    <button class="btn" style="max-width:200px; margin:0 auto;" onclick="window.location.reload()">Finish & Exit</button>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // 100 Bilingual Questions covering Photoshop Basics, Tools, Properties, Deep Options & Shortcuts
-        const rawQuestionBank = [
-            // BASICS & FILE FORMATS (1 - 20)
-            { id: 1, question: "Adobe Photoshop में डिफ़ॉल्ट फाइल एक्सटेंशन क्या होता है? / What is the default file extension in Adobe Photoshop?", options: [".psd", ".jpg", ".png", ".ai"], answer: 0 },
-            { id: 2, question: "Photoshop में raster images की बेसिक यूनिट क्या है? / What is the basic unit of a raster image in Photoshop?", options: ["Pixel (पिक्सेल)", "Vector (वेक्टर)", "Inch (इंच)", "Point (पॉइंट)"], answer: 0 },
-            { id: 3, question: "प्रिंटिंग के लिए कौन सा कलर मोड सबसे उपयुक्त होता है? / Which color mode is best suited for professional printing?", options: ["CMYK Color", "RGB Color", "Grayscale", "Bitmap"], answer: 0 },
-            { id: 4, question: "वेब और डिजिटल स्क्रीन डिस्प्ले के लिए कौन सा कलर मोड प्रयोग होता है? / Which color mode is used for web and digital screen display?", options: ["RGB Color", "CMYK Color", "Lab Color", "Duotone"], answer: 0 },
-            { id: 5, question: "Photoshop में किसी इमेज के एक स्टेप पीछे जाने (Undo) के लिए शॉर्टकट क्या है? / What is the shortcut to Undo one step in Photoshop?", options: ["Ctrl + Z", "Ctrl + Alt + Z", "Ctrl + Shift + Z", "Ctrl + Y"], answer: 0 },
-            { id: 6, question: "Photoshop में हिस्ट्री पैनल से कई स्टेप पीछे (Multiple Undos) जाने की शॉर्टकट कुंजी क्या है? / What is the shortcut for step backward (multiple undo)?", options: ["Ctrl + Alt + Z", "Ctrl + Shift + Z", "Ctrl + Y", "Ctrl + Z"], answer: 0 },
-            { id: 7, question: "नई फ़ाइल (New Document) बनाने की शॉर्टकट कुंजी क्या है? / What is the shortcut key to create a New document?", options: ["Ctrl + N", "Ctrl + O", "Ctrl + S", "Ctrl + Shift + N"], answer: 0 },
-            { id: 8, question: "Photoshop में 'Free Transform' की शॉर्टकट कुंजी क्या है? / What is the shortcut key for 'Free Transform'?", options: ["Ctrl + T", "Ctrl + F", "Ctrl + Shift + T", "Alt + T"], answer: 0 },
-            { id: 9, question: "नया लेयर (New Layer) बनाने की शॉर्टकट कुंजी क्या है? / What is the shortcut key to create a New Layer?", options: ["Ctrl + Shift + N", "Ctrl + N", "Ctrl + Alt + N", "Ctrl + L"], answer: 0 },
-            { id: 10, question: "सभी लेयर्स को एक साथ मर्ज (Flatten Image) करने का विकल्प कहाँ मिलता है?", options: ["Layer Menu", "File Menu", "Select Menu", "Filter Menu"], answer: 0 },
-            { id: 11, question: "Photoshop फाइल को ट्रांसपेरेंसी बनाए रखते हुए सेव करने के लिए कौन सा फॉर्मेट सबसे अच्छा है? / Which format preserves transparency best in Photoshop?", options: [".png", ".jpg", ".bmp", ".gif"], answer: 0 },
-            { id: 12, question: "स्क्रीन रेजोल्यूशन (Screen Resolution) के लिए मानक पिक्सेल प्रति इंच (PPI) कितना होता है?", options: ["72 PPI", "300 PPI", "150 PPI", "600 PPI"], answer: 0 },
-            { id: 13, question: "प्रिंट रेजोल्यूशन (Print Resolution) के लिए मानक पिक्सेल प्रति इंच (PPI) कितना होता है?", options: ["300 PPI", "72 PPI", "96 PPI", "1200 PPI"], answer: 0 },
-            { id: 14, question: "फोटoshop में बैकग्राउंड कलर को डिफ़ॉल्ट (Black and White) करने की शॉर्टकट कुंजी क्या है?", options: ["D", "X", "Ctrl + D", "Shift + D"], answer: 0 },
-            { id: 15, question: "फोरग्राउंड और बैकग्राउंड कलर को आपस में स्वैप (Swap) करने की शॉर्टकट कुंजी क्या है?", options: ["X", "D", "S", "C"], answer: 0 },
-            { id: 16, question: "Photoshop में किसी लेयर की ओपिसिटी (Opacity) को सीधे 50% सेट करने के लिए कीबोर्ड पर कौन सी संख्या दबानी होगी?", options: ["Number 5", "Number 0", "Number 50", "Ctrl + 5"], answer: 0 },
-            { id: 17, question: "Photoshop में किसी लेयर की ओपिसिटी (Opacity) को 100% करने के लिए कौन सा नंबर दबाते हैं?", options: ["Number 0", "Number 1", "Number 9", "Number 10"], answer: 0 },
-            { id: 18, question: "इमेज का साइज (Image Size) बदलने की शॉर्टकट कुंजी क्या है? / What is the shortcut to open Image Size dialog box?", options: ["Ctrl + Alt + I", "Ctrl + I", "Ctrl + Shift + I", "Ctrl + T"], answer: 0 },
-            { id: 19, question: "कैनवास का साइज (Canvas Size) बदलने की शॉर्टकट कुंजी क्या है? / What is the shortcut to open Canvas Size dialog box?", options: ["Ctrl + Alt + C", "Ctrl + C", "Ctrl + Shift + C", "Ctrl + V"], answer: 0 },
-            { id: 20, question: "Photoshop में 'Invert Selection' की शॉर्टकट कुंजी क्या है? / What is the shortcut key to Invert a selection?", options: ["Ctrl + Shift + I", "Ctrl + I", "Ctrl + Alt + I", "Ctrl + Shift + S"], answer: 0 },
-
-            // SELECTION TOOLS & OPTIONS (21 - 40)
-            { id: 21, question: "आयताकार (Rectangular) सिलेक्शन बनाने के लिए किस टूल का उपयोग होता है?", options: ["Rectangular Marquee Tool", "Elliptical Marquee Tool", "Lasso Tool", "Move Tool"], answer: 0 },
-            { id: 22, question: "Rectangular Marquee Tool की शॉर्टकट कुंजी क्या है? / What is the shortcut key for Marquee Tool?", options: ["M", "L", "W", "V"], answer: 0 },
-            { id: 23, question: "Lasso Tool की शॉर्टकट कुंजी क्या है? / What is the shortcut key for Lasso Tool?", options: ["L", "M", "W", "U"], answer: 0 },
-            { id: 24, question: "मैजिक वान्ड टूल (Magic Wand Tool) का मुख्य कार्य क्या है?", options: ["समान रंग वाले पिक्सेल का चयन करना (Selecting similar colored pixels)", "ब्रश पेंट करना", "इमेज क्रॉप करना", "टेक्स्ट लिखना"], answer: 0 },
-            { id: 25, question: "क्विक सिलेक्शन टूल (Quick Selection Tool) की शॉर्टकट कुंजी क्या है?", options: ["W", "M", "L", "S"], answer: 0 },
-            { id: 26, question: "किसी सिलेक्शन में नए सिलेक्शन को जोड़ने (Add to Selection) के लिए कौन सी की दबाई जाती है?", options: ["Shift", "Alt", "Ctrl", "Spacebar"], answer: 0 },
-            { id: 27, question: "मौजूदा सिलेक्शन से कुछ हिस्सा घटाने (Subtract from Selection) के लिए कौन सी की दबाई जाती है?", options: ["Alt (Option)", "Shift", "Ctrl", "Tab"], answer: 0 },
-            { id: 28, question: "दो सिलेक्शन के बीच का कॉमन हिस्सा (Intersect with Selection) चुनने के लिए कौन सी की प्रेस करते हैं?", options: ["Shift + Alt", "Ctrl + Alt", "Ctrl + Shift", "Alt only"], answer: 0 },
-            { id: 29, question: "सिलेक्शन को हटाने (Deselect) की शॉर्टकट कुंजी क्या है? / What is the shortcut key to Deselect?", options: ["Ctrl + D", "Ctrl + Shift + D", "Ctrl + A", "Ctrl + H"], answer: 0 },
-            { id: 30, question: "फेदर (Feather) ऑप्शन का उपयोग सिलेक्शन के किनारों को कैसा बनाने के लिए किया जाता है?", options: ["धुंधला और कोमल (Soft and blurred edges)", "तिकोना", "कठोर (Hard edges)", "पारदर्शी"], answer: 0 },
-            { id: 31, question: "Polygon Lasso Tool का उपयोग किस प्रकार के सिलेक्शन के लिए किया जाता है?", options: ["सीधी रेखाओं वाले आकार (Straight-edged shapes)", "गोलाकार आकार", "मुक्त हस्त (Freehand)", "रंग आधारित"], answer: 0 },
-            { id: 32, question: "Magnetic Lasso Tool का मुख्य गुण क्या है?", options: ["इमेज के किनारों (Edges) पर अपने आप चिपकना", "कलर फिल करना", "ब्रश चलाना", "क्रॉप करना"], answer: 0 },
-            { id: 33, question: "बालों जैसे बारीक हिस्सों के सिलेक्शन को परफेक्ट करने के लिए किस एडवांस पैनल का उपयोग होता है?", options: ["Select and Mask (Refine Edge)", "Layer Panel", "History Panel", "Brush Panel"], answer: 0 },
-            { id: 34, question: "लगाए गए सिलेक्शन को मूव (Move) करने के लिए किस टूल पर स्विच होना पड़ता है?", options: ["Move Tool (V)", "Hand Tool", "Zoom Tool", "Crop Tool"], answer: 0 },
-            { id: 35, question: "Move Tool की शॉर्टकट कुंजी क्या है? / What is the shortcut key for Move Tool?", options: ["V", "M", "L", "W"], answer: 0 },
-            { id: 36, question: "किसी लेयर की सामग्री को तुरंत डुप्लिकेट करने के लिए Move Tool के साथ कौन सी की दबाकर खींचते हैं?", options: ["Alt (Option)", "Ctrl", "Shift", "Tab"], answer: 0 },
-            { id: 37, question: "Elliptical Marquee Tool से बिल्कुल गोल वृत्त (Perfect Circle) बनाने के लिए कौन सी की दबाई जाती है?", options: ["Shift", "Alt", "Ctrl", "Spacebar"], answer: 0 },
-            { id: 38, question: "Rectangular Marquee Tool से एकदम वर्ग (Perfect Square) बनाने के लिए कौन सी की दबाते हैं?", options: ["Shift", "Alt", "Ctrl", "Esc"], answer: 0 },
-            { id: 39, question: "Magic Wand Tool के ऑप्शंस बार में 'Tolerance' का क्या कार्य होता है?", options: ["रंगों की सहनशीलता या रेंज तय करना", "ब्रश का आकार बदलना", "ओपिसिटी कम करना", "लेयर मर्ज करना"], answer: 0 },
-            { id: 40, question: "एंटी-अलियासिंग (Anti-alias) चेकबॉक्स सिलेक्शन के किनारों को कैसा बनाता है?", options: ["चिकना और धुंधला (Smooth transitions)", "कटा-फटा", "पिक्सेलेटेड", "मोटी आउटलाइन"], answer: 0 },
-
-            // PAINTING, RETOUCHING & HEALING TOOLS (41 - 65)
-            { id: 41, question: "ब्रश टूल (Brush Tool) की शॉर्टकट कुंजी क्या है? / What is the shortcut key for Brush Tool?", options: ["B", "P", "E", "S"], answer: 0 },
-            { id: 42, question: "पेंसिल टूल (Pencil Tool) की शॉर्टकट कुंजी क्या है? / What is the shortcut key for Pencil Tool?", options: ["B (Shift + B cycles)", "P", "E", "M"], answer: 0 },
-            { id: 43, question: "इरेज़र टूल (Eraser Tool) की शॉर्टकट कुंजी क्या है? / What is the shortcut key for Eraser Tool?", options: ["E", "B", "R", "D"], answer: 0 },
-            { id: 44, question: "क्लोन स्टाम्प टूल (Clone Stamp Tool) की शॉर्टकट कुंजी क्या है? / What is the shortcut key for Clone Stamp Tool?", options: ["S", "C", "J", "B"], answer: 0 },
-            { id: 45, question: "Clone Stamp Tool से सैंपल लेने (Sampling source area) के लिए कौन सी की प्रेस की जाती है?", options: ["Alt (Option) + Click", "Ctrl + Click", "Shift + Click", "Spacebar + Click"], answer: 0 },
-            { id: 46, question: "हीलिंग ब्रश टूल (Healing Brush Tool) की शॉर्टकट कुंजी क्या है?", options: ["J", "S", "B", "E"], answer: 0 },
-            { id: 47, question: "Spot Healing Brush Tool का मुख्य उपयोग किस लिए होता है?", options: ["त्वचा के दाग-धब्बे और मुंहासे तुरंत हटाने के लिए (Removing blemishes quickly)", "बड़ा हिस्सा कॉपी करने के लिए", "रंग भरने के लिए", "क्रॉप करने के लिए"], answer: 0 },
-            { id: 48, question: "पैच टूल (Patch Tool) का उपयोग किस लिए किया जाता है?", options: ["इमेज के बड़े क्षतिग्रस्त या दाग वाले हिस्से को रिपेयर करने के लिए", "टेक्स्ट लिखने के लिए", "सिलेक्शन बनाने के लिए", "ब्रश साइज बढ़ाने के लिए"], answer: 0 },
-            { id: 49, question: "ग्रेडिएंट टूल (Gradient Tool) की शॉर्टकट कुंजी क्या है? / What is the shortcut key for Gradient Tool?", options: ["G", "B", "P", "K"], answer: 0 },
-            { id: 50, question: "पेंट बाल्टी टूल (Paint Bucket Tool) की शॉर्टकट कुंजी क्या है?", options: ["G (Shift + G cycles)", "B", "P", "K"], answer: 0 },
-            { id: 51, question: "ब्रश का आकार बड़ा (Increase Brush Size) करने की शॉर्टकट की क्या है?", options: ["Right Bracket [ ]", "Left Bracket [ ]", "Ctrl + Plus", "Alt + Plus"], answer: 0 },
-            { id: 52, question: "ब्रश का आकार छोटा (Decrease Brush Size) करने की शॉर्टकट की क्या है?", options: ["Left Bracket [ ]", "Right Bracket [ ]", "Ctrl + Minus", "Alt + Minus"], answer: 0 },
-            { id: 53, question: "ब्रश की हार्डनेस (Hardness) बढ़ाने या घटाने के लिए शॉर्टकट के साथ कौन सी की प्रयोग होती है?", options: ["Shift + Bracket [ ]", "Alt + Bracket [ ]", "Ctrl + Bracket [ ]", "Spacebar"], answer: 0 },
-            { id: 54, question: "ऑपिसिटी (Opacity) और फ्लो (Flow) में क्या मुख्य अंतर होता है?", options: ["Flow स्ट्रोक की गति और दर नियंत्रित करता है, Opacity कुल पारदर्शिता", "दोनों एक ही हैं", "Opacity केवल ब्रश के लिए है", "Flow केवल टेक्स्ट के लिए है"], answer: 0 },
-            { id: 55, question: "ब्लर टूल (Blur Tool) इमेज में क्या प्रभाव डालता है?", options: ["पिक्सेल्स को धुंधला करता है (Softens details)", "पिक्सेल्स को साफ करता है", "रंग गहरा करता है", "काटता है"], answer: 0 },
-            { id: 56, question: "शार्प टूल (Sharpen Tool) का क्या कार्य है?", options: ["इमेज के किनारों और विवरण को स्पष्ट करना (Enhances edge details)", "धुंधला करना", "मिटाना", "ब्रश चलाना"], answer: 0 },
-            { id: 57, question: "स्मज टूल (Smudge Tool) का प्रभाव किसके समान होता है?", options: ["गीले पेंट को उंगली से फैलाने के जैसा", "इरेज़र जैसा", "क्रॉप जैसा", "कलर करेक्शन जैसा"], answer: 0 },
-            { id: 58, question: "डोज टूल (Dodge Tool) इमेज के हिस्से के साथ क्या करता है?", options: ["पिक्सेल्स को हल्का (Brighten) करता है", "पिक्सेल्स को गहरा करता है", "रंग बदलता है", "ब्लर करता है"], answer: 0 },
-            { id: 59, question: "बर्न टूल (Burn Tool) इमेज के हिस्से के साथ क्या करता है?", options: ["पिक्सेल्स को गहरा (Darken) करता है", "पिक्सेल्स को चमकाता है", "मिटाता है", "सिलेक्शन बनाता है"], answer: 0 },
-            { id: 60, question: "स्पंज टूल (Sponge Tool) का मुख्य कार्य क्या है?", options: ["कलर की संतृप्ति (Saturation) बढ़ाना या घटाना", "इमेज साफ़ करना", "ब्रश पेंट करना", "साइज़ बदलना"], answer: 0 },
-            { id: 61, question: "हिस्टरी ब्रश टूल (History Brush Tool) का उपयोग किस लिए होता है?", options: ["इमेज के हिस्से को उसकी पिछली स्टेट (History State) पर वापस पेंट करने के लिए", "इमेज डिलीट करने के लिए", "नया लेयर बनाने के लिए", "फाइल सेव करने के लिए"], answer: 0 },
-            { id: 62, question: "आईड्रॉपर टूल (Eyedropper Tool) की शॉर्टकट कुंजी क्या है? / What is the shortcut key for Eyedropper Tool?", options: ["I", "E", "P", "K"], answer: 0 },
-            { id: 63, question: "Eyedropper Tool का मुख्य कार्य क्या है?", options: ["इमेज से किसी भी रंग का सैंपल लेकर फोरग्राउंड कलर सेट करना", "पिक्चर क्रॉप करना", "जूम करना", "मेजरमेंट लेना"], answer: 0 },
-            { id: 64, question: "कलर सैंपलर टूल (Color Sampler Tool) किस पैनल में कलर वैल्यू ट्रैक करने में मदद करता है?", options: ["Info Panel", "History Panel", "Layers Panel", "Channels Panel"], answer: 0 },
-            { id: 65, question: "रूलर टूल (Ruler Tool) का उपयोग Photoshop में किस लिए होता है?", options: ["दूरी, कोण (Angle) और संरेखण मापने के लिए", "पन्ने पर लाइन खींचने के लिए", "कैनवास बड़ा करने के लिए", "मार्जिन सेट करने के लिए"], answer: 0 },
-
-            // PEN, SHAPES & TYPE TOOLS (66 - 85)
-            { id: 66, question: "पेन टूल (Pen Tool) की शॉर्टकट कुंजी क्या है? / What is the shortcut key for Pen Tool?", options: ["P", "B", "T", "U"], answer: 0 },
-            { id: 67, question: "Pen Tool मुख्य रूप से किस प्रकार के पाथ बनाने के लिए प्रयोग होता है?", options: ["वेक्टर पाथ और सटीक सिलेक्शन (Vector paths and precise selections)", "फ्रीहैंड पेंटिंग", "इरेज़र", "ग्रेडिएंट फिल"], answer: 0 },
-            { id: 68, question: "हॉरिजॉन्टल टाइप टूल (Horizontal Type Tool) की शॉर्टकट कुंजी क्या है?", options: ["T", "V", "M", "P"], answer: 0 },
-            { id: 69, question: "Photoshop में टेक्स्ट लिखने पर वह किस रूप में बनता है?", options: ["Text Layer (वेक्टर आधारित टेक्स्ट लेयर)", "Raster Layer", "Background Layer", "Adjustment Layer"], answer: 0 },
-            { id: 70, question: "शेप टूल (Rectangle, Ellipse, Custom Shape) की शॉर्टकट कुंजी क्या है?", options: ["U", "P", "T", "S"], answer: 0 },
-            { id: 71, question: "डायरेक्ट सिलेक्शन टूल (Direct Selection Tool - White Arrow) की शॉर्टकट कुंजी क्या है?", options: ["A", "V", "S", "P"], answer: 0 },
-            { id: 72, question: "Direct Selection Tool (A) का मुख्य कार्य क्या है?", options: ["पाथ के एंकर पॉइंट्स और हैंडल्स को एडिट करना", "पूरा लेयर मूव करना", "सिलेक्शन बनाना", "ब्रश चलाना"], answer: 0 },
-            { id: 73, question: "पाथ सिलेक्शन टूल (Path Selection Tool - Black Arrow) की शॉर्टकट कुंजी क्या है?", options: ["A (Shift + A cycles)", "V", "S", "P"], answer: 0 },
-            { id: 74, question: "टेक्स्ट का आकार (Font Size) बढ़ाने के लिए शॉर्टकट क्या है?", options: ["Ctrl + Shift + >", "Ctrl + Alt + Shift + >", "Ctrl + T", "Ctrl + B"], answer: 0 },
-            { id: 75, question: "कैरेक्टर पैनल (Character Panel) में 'Leading' किसे कहा जाता है?", options: ["दो लाइनों के बीच की वर्टिकल स्पेसिंग (Line Spacing)", "अक्षरों के बीच की दूरी (Kerning)", "फोंट की मोटाई", "अक्षरों का झुकाव"], answer: 0 },
-            { id: 76, question: "कैरेक्टर पैनल में 'Kerning' का क्या अर्थ है?", options: ["किन्हीं दो विशिष्ट अक्षरों के बीच की दूरी समायोजित करना", "पूरी लाइन की स्पेसिंग", "फोंट साइज", "शब्दों की चौड़ाई"], answer: 0 },
-            { id: 77, question: "कैरेक्टर पैनल में 'Tracking' का क्या अर्थ है?", options: ["चयनित अक्षरों के पूरे समूह के बीच की दूरी को एक समान समायोजित करना", "दो लाइनों के बीच की दूरी", "फोंट बदलना", "बोल्ड करना"], answer: 0 },
-            { id: 78, question: "टाइप मास्क टूल (Horizontal/Vertical Type Mask Tool) का क्या काम है?", options: ["टेक्स्ट के आकार में सिलेक्शन (Selection) बनाना", "टेक्स्ट प्रिंट करना", "टेक्स्ट पर कलर भरना", "लेयर मर्ज करना"], answer: 0 },
-            { id: 79, question: "कस्टम शेप टूल (Custom Shape Tool) में पहले से कौन से शेप्स उपलब्ध होते हैं?", options: ["फ्लावर, एरो, एनिमल्स, बैनर आदि", "केवल वृत्त और वर्ग", "केवल लाइनें", "कोई शेप नहीं"], answer: 0 },
-            { id: 80, question: "पेन टूल से बनाए गए पाथ को सिलेक्शन में बदलने की शॉर्टकट कुंजी क्या है?", options: ["Ctrl + Enter", "Ctrl + D", "Ctrl + Alt + Enter", "Shift + Enter"], answer: 0 },
-
-            // NAVIGATION, TRANSFORMATION & DEEP OPTIONS (81 - 100)
-            { id: 81, question: "जूम इन (Zoom In) करने की शॉर्टकट कुंजी क्या है? / What is the shortcut key to Zoom In?", options: ["Ctrl + Plus (+)", "Ctrl + Minus (-)", "Ctrl + 0", "Ctrl + 1"], answer: 0 },
-            { id: 82, question: "जूम आउट (Zoom Out) करने की शॉर्टकट कुंजी क्या है?", options: ["Ctrl + Minus (-)", "Ctrl + Plus (+)", "Ctrl + 0", "Ctrl + Alt + 0"], answer: 0 },
-            { id: 83, question: "इमेज को स्क्रीन के फिट (Fit on Screen) करने की शॉर्टकट कुंजी क्या है?", options: ["Ctrl + 0", "Ctrl + 1", "Ctrl + 9", "Ctrl + Alt + 0"], answer: 0 },
-            { id: 84, question: "हैंड टूल (Hand Tool) की शॉर्टकट कुंजी क्या है? / What is the shortcut key for Hand Tool?", options: ["H", "Z", "V", "M"], answer: 0 },
-            { id: 85, question: "किसी भी टूल के उपयोग के दौरान अस्थायी रूप से 'Hand Tool' पर जाने के लिए कौन सी की दबाई जाती है?", options: ["Spacebar", "Alt", "Ctrl", "Shift"], answer: 0 },
-            { id: 86, question: "क्रॉप टूल (Crop Tool) की शॉर्टकट कुंजी क्या है? / What is the shortcut key for Crop Tool?", options: ["C", "K", "R", "X"], answer: 0 },
-            { id: 87, question: "क्रॉप करने के बाद एरिया को स्थायी रूप से हटाने के लिए ऑप्शंस बार में कौन सा विकल्प होता है?", options: ["Delete Cropped Pixels", "Hide Cropped Pixels", "Shield Pixels", "Clear Crop"], answer: 0 },
-            { id: 88, question: "स्लाइस टूल (Slice Tool) का उपयोग मुख्य रूप से किस कार्य के लिए होता है?", options: ["वेबसाइट लेआउट के लिए इमेज को छोटे टुकड़ों में बांटना", "इमेज काटना", "लेयर काटना", "वीडियो काटना"], answer: 0 },
-            { id: 89, question: "ग्रिड (Grid) को ऑन या ऑफ करने की शॉर्टकट कुंजी क्या है?", options: ["Ctrl + ' (Quote)", "Ctrl + ; (Semicolon)", "Ctrl + R", "Ctrl + Shift + G"], answer: 0 },
-            { id: 90, question: "गाइड्स (Guides) को शो या हाइड करने की शॉर्टकट कुंजी क्या है?", options: ["Ctrl + ; (Semicolon)", "Ctrl + ' (Quote)", "Ctrl + R", "Ctrl + G"], answer: 0 },
-            { id: 91, question: "रूलर्स (Rulers) को स्क्रीन पर लाने या हटाने की शॉर्टकट कुंजी क्या है?", options: ["Ctrl + R", "Ctrl + U", "Ctrl + Shift + R", "Alt + R"], answer: 0 },
-            { id: 92, question: "लेयर्स पैनल (Layers Panel) खोलने की शॉर्टकट कुंजी क्या है?", options: ["F7", "F5", "F6", "F8"], answer: 0 },
-            { id: 93, question: "कलर पैनल (Color Panel) खोलने की शॉर्टकट कुंजी क्या है?", options: ["F6", "F5", "F7", "F9"], answer: 0 },
-            { id: 94, question: "ब्रश पैनल (Brushes Panel) खोलने की शॉर्टकट कुंजी क्या है?", options: ["F5", "F6", "F7", "F8"], answer: 0 },
-            { id: 95, question: "इन्फो पैनल (Info Panel) खोलने की शॉर्टकट कुंजी क्या है?", options: ["F8", "F5", "F6", "F7"], answer: 0 },
-            { id: 96, question: "एक्शन पैनल (Actions Panel) खोलने की शॉर्टकट कुंजी क्या है?", options: ["Alt + F9 (या Window > Actions)", "F4", "Ctrl + F9", "F2"], answer: 0 },
-            { id: 97, question: "Photoshop इंटरफ़ेस की स्क्रीन मोड (Screen Mode) बदलने के लिए कौन सी की बार-बार दबाई जाती है?", options: ["F key", "Tab key", "Caps Lock", "Esc"], answer: 0 },
-            { id: 98, question: "टूल्स पैनल और सभी डॉक्स को एक साथ छिपाने या दिखाने के लिए कौन सी की दबाते हैं?", options: ["Tab", "F", "Shift + Tab", "Esc"], answer: 0 },
-            { id: 99, question: "दो लेयर्स को आपस में मर्ज करने (Merge Down) की शॉर्टकट कुंजी क्या है?", options: ["Ctrl + E", "Ctrl + Shift + E", "Ctrl + M", "Ctrl + L"], answer: 0 },
-            { id: 100, question: "सक्रिय लेयर की एक नई कॉपी (Duplicate Layer) बनाने की शॉर्टकट कुंजी क्या है?", options: ["Ctrl + J", "Ctrl + D", "Ctrl + C", "Ctrl + Shift + N"], answer: 0 }
+        /* --- 100 PHOTOSHOP 7.0 TOOLS & SHORTCUTS MCQS --- */
+        const questionBank = [
+            { id: 1, question: "What is the default shortcut key for the Move Tool in Photoshop 7.0?", options: ["M", "V", "Move", "Arrow Key"], answer: 1 },
+            { id: 2, question: "Which tool is activated by pressing the shortcut key M?", options: ["Magic Wand Tool", "Move Tool", "Marquee Tool", "Measure Tool"], answer: 2 },
+            { id: 3, question: "To cycle between Rectangular and Elliptical Marquee Tools, which shortcut key do you press with M?", options: ["Ctrl", "Shift", "Alt", "Tab"], answer: 1 },
+            { id: 4, question: "Which shortcut key activates the Lasso Tool?", options: ["L", "S", "P", "T"], answer: 0 },
+            { id: 5, question: "How do you cycle between Lasso, Polygonal Lasso, and Magnetic Lasso Tools?", options: ["Ctrl + L", "Alt + L", "Shift + L", "Tab + L"], answer: 2 },
+            { id: 6, question: "What is the keyboard shortcut for the Magic Wand Tool?", options: ["W", "M", "G", "K"], answer: 0 },
+            { id: 7, question: "Which tool allows you to sample colors from an image to set the foreground color?", options: ["Paintbrush Tool", "Color Picker", "Eyedropper Tool", "Measure Tool"], answer: 2 },
+            { id: 8, question: "What is the default keyboard shortcut for the Eyedropper Tool?", options: ["E", "I", "D", "P"], answer: 1 },
+            { id: 9, question: "Which tool is used to measure distances, locations, and angles in Photoshop?", options: ["Ruler Tool (Measure Tool)", "Scale Tool", "Slice Tool", "Line Tool"], answer: 0 },
+            { id: 10, question: "What is the shortcut key for the Slice Tool in Photoshop 7.0?", options: ["S", "K", "C", "P"], answer: 1 },
+            { id: 11, question: "To cycle through the Slice Tool and Slice Select Tool, which key do you press with K?", options: ["Ctrl", "Shift", "Alt", "Spacebar"], answer: 1 },
+            { id: 12, question: "What shortcut key activates the Crop Tool?", options: ["X", "C", "P", "R"], answer: 1 },
+            { id: 13, question: "Which tool is used to select an area of an image and discard the rest?", options: ["Eraser Tool", "Slice Tool", "Crop Tool", "Hand Tool"], answer: 2 },
+            { id: 14, question: "When using the Rectangular Marquee Tool, holding down which key draws a square?", options: ["Ctrl", "Alt", "Shift", "Spacebar"], answer: 2 },
+            { id: 15, question: "Holding down the Alt key while dragging with a Marquee tool causes the selection to expand from where?", options: ["Top-left corner", "Bottom-right corner", "Center", "Random point"], answer: 2 },
+            { id: 16, question: "What is the shortcut key for the Brush Tool?", options: ["B", "P", "T", "R"], answer: 0 },
+            { id: 17, question: "Which shortcut key activates the Pencil Tool?", options: ["P", "Shift + B", "Ctrl + B", "Alt + P"], answer: 1 },
+            { id: 18, question: "What is the default shortcut key for the Clone Stamp Tool?", options: ["C", "S", "T", "M"], answer: 1 },
+            { id: 19, question: "Which tool is grouped with the Clone Stamp Tool and shares the S shortcut key?", options: ["Pattern Stamp Tool", "Healing Brush Tool", "Eraser Tool", "Smudge Tool"], answer: 0 },
+            { id: 20, question: "What is the shortcut key for the Eraser Tool?", options: ["E", "R", "Eraser", "X"], answer: 0 },
+            { id: 21, question: "Which key combination cycles through the Eraser Tool variants?", options: ["Ctrl + E", "Shift + E", "Alt + E", "Tab + E"], answer: 1 },
+            { id: 22, question: "What is the shortcut key for the Gradient Tool?", options: ["Gr", "G", "T", "D"], answer: 1 },
+            { id: 23, question: "Which tool shares the G shortcut key with the Gradient Tool?", options: ["Paint Bucket Tool", "Blur Tool", "Sponge Tool", "Brush Tool"], answer: 0 },
+            { id: 24, question: "What is the shortcut key for the Dodge Tool?", options: ["D", "O", "T", "G"], answer: 1 },
+            { id: 25, question: "Which tools are grouped together under the letter O?", options: ["Dodge, Burn, and Sponge Tools", "Blur, Sharpen, and Smudge Tools", "Brush, Pencil, and Airbrush Tools", "Gradient and Paint Bucket Tools"], answer: 0 },
+            { id: 26, question: "What does the Burn Tool do to an image?", options: ["Lightens pixels", "Darkens pixels", "Saturates colors", "Blurs edges"], answer: 1 },
+            { id: 27, question: "What does the Sponge Tool do?", options: ["Changes color saturation", "Cleans canvas", "Blurs background", "Erases to transparency"], answer: 0 },
+            { id: 28, question: "What is the shortcut key for the History Brush Tool?", options: ["H", "Y", "B", "Alt + H"], answer: 1 },
+            { id: 29, question: "Which tool shares the Y shortcut key with the History Brush Tool?", options: ["Art History Brush Tool", "Healing Brush Tool", "Brush Tool", "Pen Tool"], answer: 0 },
+            { id: 30, question: "How do you quickly increase the brush size while using the Brush Tool?", options: ["Right bracket key (])", "Left bracket key ([)", "Plus sign (+)", "Up arrow key"], answer: 0 },
+            { id: 31, question: "How do you quickly decrease the brush size while painting?", options: ["Right bracket key (])", "Left bracket key ([)", "Minus sign (-)", "Down arrow key"], answer: 1 },
+            { id: 32, question: "What shortcut key resets Foreground and Background color swatches to default Black and White?", options: ["X", "D", "R", "S"], answer: 1 },
+            { id: 33, question: "Which shortcut key swaps the Foreground and Background colors?", options: ["S", "X", "D", "SW"], answer: 1 },
+            { id: 34, question: "What is the shortcut key for the Pen Tool?", options: ["P", "N", "T", "E"], answer: 0 },
+            { id: 35, question: "Which tools are grouped with the Pen Tool under the letter P?", options: ["Freeform Pen, Add Anchor Point, Delete Anchor Point, Convert Point", "Brush, Pencil", "Lasso, Polygonal Lasso", "Gradient, Paint Bucket"], answer: 0 },
+            { id: 36, question: "What is the shortcut key for Horizontal Type Tool?", options: ["T", "H", "W", "Text"], answer: 0 },
+            { id: 37, question: "How do you cycle through Horizontal Type, Vertical Type, Horizontal Type Mask, and Vertical Type Mask?", options: ["Ctrl + T", "Shift + T", "Alt + T", "Tab + T"], answer: 1 },
+            { id: 38, question: "What is the shortcut key for the Path Component Selection Tool?", options: ["A", "S", "P", "C"], answer: 0 },
+            { id: 39, question: "Which tool shares the A shortcut key with Path Component Selection?", options: ["Direct Selection Tool", "Anchor Tool", "Arrow Tool", "Move Tool"], answer: 0 },
+            { id: 40, question: "What is the shortcut key for Custom Shape / Rectangle / Ellipse tools?", options: ["U", "S", "C", "Sh"], answer: 0 },
+            { id: 41, question: "What is the shortcut key for the Hand Tool?", options: ["H", "N", "M", "Hand"], answer: 0 },
+            { id: 42, question: "What is the shortcut key for the Zoom Tool?", options: ["Z", "Zoom", "M", "V"], answer: 0 },
+            { id: 43, question: "If you are using any tool, holding down which key temporarily activates the Hand Tool?", options: ["Ctrl", "Alt", "Spacebar", "Shift"], answer: 2 },
+            { id: 44, question: "Holding down which key while using the Zoom Tool zooms out instead of zooming in?", options: ["Ctrl", "Alt", "Shift", "Tab"], answer: 1 },
+            { id: 45, question: "What is the shortcut key for the Notes Tool?", options: ["N", "T", "O", "K"], answer: 0 },
+            { id: 46, question: "Which tool shares the N shortcut key with the Notes Tool?", options: ["Audio Annotation Tool", "New Tool", "Navigation Tool", "None"], answer: 0 },
+            { id: 47, question: "What is the shortcut key for the Eyedropper / Color Sampler / Measure tool group?", options: ["I", "E", "M", "S"], answer: 0 },
+            { id: 48, question: "What is the shortcut to create a new document in Photoshop 7.0?", options: ["Ctrl + N", "Ctrl + O", "Ctrl + S", "Ctrl + Shift + N"], answer: 0 },
+            { id: 49, question: "What is the shortcut to open an existing image file?", options: ["Ctrl + N", "Ctrl + O", "Ctrl + P", "Ctrl + E"], answer: 1 },
+            { id: 50, question: "What is the shortcut to save the active document?", options: ["Ctrl + S", "Ctrl + Shift + S", "Ctrl + Alt + S", "Ctrl + W"], answer: 0 },
+            { id: 51, question: "What is the shortcut for 'Save As' in Photoshop?", options: ["Ctrl + S", "Ctrl + Shift + S", "Ctrl + Alt + S", "Ctrl + A"], answer: 1 },
+            { id: 52, question: "What shortcut closes the active document?", options: ["Ctrl + C", "Ctrl + W", "Ctrl + Q", "Alt + F4"], answer: 1 },
+            { id: 53, question: "What shortcut exits Photoshop completely?", options: ["Ctrl + W", "Ctrl + Q", "Alt + F4", "Both Ctrl + Q and Alt + F4"], answer: 3 },
+            { id: 54, question: "What is the shortcut for Undo in Photoshop 7.0 (single step)?", options: ["Ctrl + Z", "Ctrl + Alt + Z", "Ctrl + Y", "Ctrl + Shift + Z"], answer: 0 },
+            { id: 55, question: "What shortcut is used for Step Backward in history (multiple undos)?", options: ["Ctrl + Z", "Ctrl + Alt + Z", "Ctrl + Shift + Z", "Ctrl + Y"], answer: 1 },
+            { id: 56, question: "What shortcut is used for Step Forward in history?", options: ["Ctrl + Z", "Ctrl + Alt + Z", "Ctrl + Shift + Z", "Ctrl + Y"], answer: 2 },
+            { id: 57, question: "What is the shortcut to Cut selected pixels?", options: ["Ctrl + C", "Ctrl + X", "Ctrl + V", "Ctrl + T"], answer: 1 },
+            { id: 58, question: "What is the shortcut to Copy selected pixels?", options: ["Ctrl + C", "Ctrl + X", "Ctrl + V", "Ctrl + P"], answer: 0 },
+            { id: 59, question: "What is the shortcut to Paste copied pixels?", options: ["Ctrl + P", "Ctrl + V", "Ctrl + Shift + V", "Ctrl + Ins"], answer: 1 },
+            { id: 60, question: "What is the shortcut for Free Transform?", options: ["Ctrl + F", "Ctrl + T", "Ctrl + Shift + T", "Ctrl + Alt + T"], answer: 1 },
+            { id: 61, question: "What shortcut deselects any active selection?", options: ["Ctrl + A", "Ctrl + D", "Ctrl + Shift + D", "Ctrl + X"], answer: 1 },
+            { id: 62, question: "What shortcut selects all pixels on the active layer?", options: ["Ctrl + A", "Ctrl + D", "Ctrl + Shift + A", "Ctrl + All"], answer: 0 },
+            { id: 63, question: "What shortcut inverses the current selection?", options: ["Ctrl + I", "Ctrl + Shift + I", "Ctrl + Alt + I", "Ctrl + Rev"], answer: 1 },
+            { id: 64, question: "What is the keyboard shortcut for Color Levels adjustment dialog?", options: ["Ctrl + L", "Ctrl + M", "Ctrl + B", "Ctrl + U"], answer: 0 },
+            { id: 65, question: "What is the shortcut for Curves adjustment dialog?", options: ["Ctrl + L", "Ctrl + M", "Ctrl + C", "Ctrl + V"], answer: 1 },
+            { id: 66, question: "What is the shortcut for Hue/Saturation adjustment dialog?", options: ["Ctrl + H", "Ctrl + U", "Ctrl + S", "Ctrl + Shift + U"], answer: 1 },
+            { id: 67, question: "What is the shortcut for Inverting colors of an image layer?", options: ["Ctrl + Shift + I", "Ctrl + I", "Ctrl + Inv", "Ctrl + Alt + I"], answer: 1 },
+            { id: 68, question: "What shortcut opens the Image Size dialog box?", options: ["Ctrl + I", "Ctrl + Alt + I", "Ctrl + Shift + I", "Ctrl + S"], answer: 1 },
+            { id: 69, question: "What shortcut opens the Canvas Size dialog box?", options: ["Ctrl + C", "Ctrl + Shift + C", "Ctrl + Alt + C", "Ctrl + Size"], answer: 2 },
+            { id: 70, question: "What shortcut creates a new blank layer?", options: ["Ctrl + N", "Ctrl + Shift + N", "Ctrl + Alt + N", "Ctrl + L"], answer: 1 },
+            { id: 71, question: "What shortcut merges visible layers into a single layer?", options: ["Ctrl + E", "Ctrl + Shift + E", "Ctrl + M", "Ctrl + Alt + E"], answer: 1 },
+            { id: 72, question: "What shortcut merges the active layer down with the layer immediately below it?", options: ["Ctrl + E", "Ctrl + Shift + E", "Ctrl + M", "Ctrl + D"], answer: 0 },
+            { id: 73, question: "What shortcut groups the current layer with the layer directly below it (Clipping Mask)?", options: ["Ctrl + G", "Ctrl + Shift + G", "Ctrl + Alt + G", "Ctrl + P"], answer: 0 },
+            { id: 74, question: "What shortcut hides or shows all active palettes/panels and toolbox?", options: ["Tab", "Shift + Tab", "F", "Ctrl + Tab"], answer: 0 },
+            { id: 75, question: "What shortcut hides or shows all palettes except the toolbox?", options: ["Tab", "Shift + Tab", "F", "Alt + Tab"], answer: 1 },
+            { id: 76, question: "What key cycles through standard screen mode, full screen with menu, and full screen mode?", options: ["Tab", "F", "S", "M"], answer: 1 },
+            { id: 77, question: "What shortcut brings up the Fill dialog box?", options: ["Shift + F5", "Ctrl + F5", "Alt + F5", "F5"], answer: 0 },
+            { id: 78, question: "What shortcut opens the Brushes palette?", options: ["F5", "F6", "F7", "F8"], answer: 0 },
+            { id: 79, question: "What shortcut opens the Color palette?", options: ["F5", "F6", "F7", "F8"], answer: 1 },
+            { id: 80, question: "What shortcut opens the Layers palette?", options: ["F5", "F6", "F7", "F8"], answer: 2 },
+            { id: 81, question: "What shortcut opens the Info palette?", options: ["F5", "F6", "F7", "F8"], answer: 3 },
+            { id: 82, question: "What shortcut opens the Actions palette?", options: ["F9", "F7", "F5", "F10"], answer: 0 },
+            { id: 83, question: "What shortcut repeats the last applied filter with previous settings?", options: ["Ctrl + F", "Ctrl + Shift + F", "Ctrl + Alt + F", "Ctrl + R"], answer: 0 },
+            { id: 84, question: "What shortcut opens the Fade dialog box for the last filter applied?", options: ["Ctrl + F", "Ctrl + Shift + F", "Ctrl + Alt + F", "Ctrl + D"], answer: 1 },
+            { id: 85, question: "Which tool is used to sample a source area for cloning texture?", options: ["Healing Brush", "Clone Stamp Tool", "Brush Tool", "Eraser"], answer: 1 },
+            { id: 86, question: "How do you set the sampling point when using the Clone Stamp Tool?", options: ["Click normally", "Hold Alt and Click", "Hold Ctrl and Click", "Double click"], answer: 1 },
+            { id: 87, question: "Which tool repairs imperfections while matching texture, lighting, and shading of the sample area?", options: ["Clone Stamp Tool", "Healing Brush Tool", "Eraser Tool", "Pencil Tool"], answer: 1 },
+            { id: 88, question: "What is the shortcut key for the Healing Brush / Patch Tool group?", options: ["J", "H", "P", "B"], answer: 0 },
+            { id: 89, question: "Which tool is used to paint hard-edged pixels without anti-aliasing?", options: ["Brush Tool", "Pencil Tool", "Airbrush", "Line Tool"], answer: 1 },
+            { id: 90, question: "What tool allows you to select pixels based on color similarity with a single click?", options: ["Lasso Tool", "Magic Wand Tool", "Marquee Tool", "Crop Tool"], answer: 1 },
+            { id: 91, question: "Which tool is used to create sharp vector outlines and paths?", options: ["Brush Tool", "Pen Tool", "Lasso Tool", "Pencil Tool"], answer: 1 },
+            { id: 92, question: "What shortcut selects the entire canvas/layer contents?", options: ["Ctrl + A", "Ctrl + C", "Ctrl + D", "Ctrl + E"], answer: 0 },
+            { id: 93, question: "Which blending mode shortcut toggles to Multiply mode in Photoshop?", options: ["Shift + Alt + M", "Shift + Alt + N", "Shift + Alt + S", "Shift + Alt + D"], answer: 0 },
+            { id: 94, question: "Which shortcut toggles the layer blending mode to Normal?", options: ["Shift + Alt + N", "Shift + Alt + M", "Shift + Alt + S", "Shift + Alt + O"], answer: 0 },
+            { id: 95, question: "How do you quickly fill a selection with the Foreground color?", options: ["Alt + Backspace", "Ctrl + Backspace", "Shift + Backspace", "Delete"], answer: 0 },
+            { id: 96, question: "How do you quickly fill a selection with the Background color?", options: ["Alt + Backspace", "Ctrl + Backspace", "Shift + Backspace", "Backspace"], answer: 1 },
+            { id: 97, question: "What shortcut opens the Preferences dialog box in Photoshop 7.0?", options: ["Ctrl + K", "Ctrl + P", "Ctrl + Shift + K", "Alt + K"], answer: 0 },
+            { id: 98, question: "Which shortcut key scales an active layer proportionally while using Free Transform?", options: ["Hold Shift while dragging corner handles", "Hold Alt while dragging", "Hold Ctrl while dragging", "Hold Spacebar"], answer: 0 },
+            { id: 99, question: "What tool is used to smear or blend colors together on an image?", options: ["Blur Tool", "Smudge Tool", "Sharpen Tool", "Sponge Tool"], answer: 1 },
+            { id: 100, question: "What shortcut creates a duplicate of the current active layer?", options: ["Ctrl + J", "Ctrl + D", "Ctrl + C", "Ctrl + L"], answer: 0 }
         ];
 
-        let currentUser = null;
-        let activeSessionKey = null;
-        let currentQuestionIndex = 0;
-        let questions = [];
-        let userAnswers = {};
-        let questionStatus = {};
-        let timerInterval = null;
-        let timeRemaining = 3600;
-        let examSubmitted = false;
-
-        const validCredentials = {
-            "admin100": "100",
-            "admin101": "101"
+        /* --- APPLICATION STATE --- */
+        let examState = {
+            candidateId: "",
+            questions: [],
+            currentQuestion: 0,
+            answers: {},        // questionId -> selectedOptionIndex
+            markedForReview: {},// questionId -> boolean
+            visited: {},        // questionId -> boolean
+            startTime: null,
+            timerSeconds: 3600, // 60 minutes
+            timerInterval: null,
+            submitted: false
         };
+
+        /* --- AUTHENTICATION & LOGIN --- */
+        function togglePasswordVisibility() {
+            const pwdInput = document.getElementById('password');
+            const toggleBtn = document.querySelector('.toggle-password');
+            if (pwdInput.type === 'password') {
+                pwdInput.type = 'text';
+                toggleBtn.textContent = 'Hide';
+            } else {
+                pwdInput.type = 'password';
+                toggleBtn.textContent = 'Show';
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value.trim();
+            const errorBox = document.getElementById('loginError');
+
+            const validUsers = {
+                "admin100": "100",
+                "admin101": "101"
+            };
+
+            if (validUsers[user] && validUsers[user] === pass) {
+                errorBox.style.display = 'none';
+                examState.candidateId = user;
+                localStorage.setItem('cbt_candidate', user);
+                switchScreen('instructionScreen');
+                document.getElementById('lblCandidateId').textContent = user;
+            } else {
+                errorBox.style.display = 'block';
+                errorBox.textContent = "Invalid Username or Password";
+            }
+        }
+
+        function toggleStartButton() {
+            const checkbox = document.getElementById('readInstructions');
+            const startBtn = document.getElementById('startExamBtn');
+            startBtn.disabled = !checkbox.checked;
+        }
 
         function switchScreen(screenId) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            const target = document.getElementById(screenId);
-            if (target) {
-                target.classList.add('active');
-            }
+            document.getElementById(screenId).classList.add('active');
         }
 
-        function togglePasswordVisibility() {
-            const pwdInput = document.getElementById('password');
-            const btn = document.querySelector('.toggle-password');
-            if (pwdInput.type === 'password') {
-                pwdInput.type = 'text';
-                btn.textContent = 'Hide';
-            } else {
-                pwdInput.type = 'password';
-                btn.textContent = 'Show';
-            }
-        }
-
-        function handleLogin(event) {
-            event.preventDefault();
-            const user = document.getElementById('username').value.trim();
-            const pass = document.getElementById('password').value.trim();
-            const errBox = document.getElementById('login-error');
-
-            if (validCredentials[user] && validCredentials[user] === pass) {
-                currentUser = user;
-                activeSessionKey = `cbt_photoshop_session_${currentUser}`;
-                errBox.style.display = 'none';
-                document.getElementById('display-candidate').textContent = currentUser;
-                switchScreen('instructions-screen');
-            } else {
-                errBox.style.display = 'block';
-            }
-        }
-
-        function toggleStartExamBtn() {
-            const checkbox = document.getElementById('accept-instructions');
-            const btn = document.getElementById('start-exam-btn');
-            if (checkbox.checked) {
-                btn.disabled = false;
-                btn.style.opacity = '1';
-                btn.style.cursor = 'pointer';
-            } else {
-                btn.disabled = true;
-                btn.style.opacity = '0.6';
-                btn.style.cursor = 'not-allowed';
-            }
-        }
-
+        /* --- RANDOMIZATION ALGORITHM (Fisher-Yates) --- */
         function shuffleArray(array) {
-            let arr = [...array];
-            for (let i = arr.length - 1; i > 0; i--) {
-                let j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
             }
-            return arr;
+            return array;
+        }
+
+        function initializeExamSession() {
+            const savedState = localStorage.getItem('cbt_exam_state_ps');
+            if (savedState) {
+                try {
+                    const parsed = JSON.parse(savedState);
+                    if (parsed && !parsed.submitted && parsed.candidateId) {
+                        examState = parsed;
+                        resumeExam();
+                        return;
+                    }
+                } catch (err) {
+                    console.error("Failed to parse saved exam state", err);
+                }
+            }
+
+            let clonedQuestions = JSON.parse(JSON.stringify(questionBank));
+            shuffleArray(clonedQuestions);
+
+            clonedQuestions.forEach(q => {
+                const originalCorrectText = q.options[q.answer];
+                shuffleArray(q.options);
+                q.answer = q.options.indexOf(originalCorrectText);
+            });
+
+            examState.questions = clonedQuestions;
+            examState.currentQuestion = 0;
+            examState.answers = {};
+            examState.markedForReview = {};
+            examState.visited = { 0: true };
+            examState.startTime = Date.now();
+            examState.timerSeconds = 3600;
+            examState.submitted = false;
+
+            saveExamState();
+            resumeExam();
         }
 
         function startExamination() {
-            const savedStateStr = localStorage.getItem(activeSessionKey);
-            if (savedStateStr) {
-                try {
-                    const state = JSON.parse(savedStateStr);
-                    questions = state.questions;
-                    userAnswers = state.userAnswers;
-                    questionStatus = state.questionStatus;
-                    currentQuestionIndex = state.currentQuestionIndex;
-                    timeRemaining = state.timeRemaining;
-                } catch(e) {
-                    initNewSession();
-                }
-            } else {
-                initNewSession();
-            }
-
-            switchScreen('exam-screen');
-            initPalette();
-            loadQuestion(currentQuestionIndex);
+            initializeExamSession();
+            switchScreen('examScreen');
+            document.getElementById('headerCandidateId').textContent = examState.candidateId;
+            renderQuestion();
+            renderPalette();
             startTimer();
         }
 
-        function initNewSession() {
-            questions = rawQuestionBank.map(q => {
-                const originalOptionsWithIndex = q.options.map((opt, idx) => ({ text: opt, isCorrect: idx === q.answer }));
-                const shuffledOpts = shuffleArray(originalOptionsWithIndex);
-                const newAnswerIndex = shuffledOpts.findIndex(o => o.isCorrect);
-                return {
-                    id: q.id,
-                    question: q.question,
-                    options: shuffledOpts.map(o => o.text),
-                    answer: newAnswerIndex
-                };
-            });
-            questions = shuffleArray(questions);
-
-            userAnswers = {};
-            questionStatus = {};
-            questions.forEach(q => {
-                questionStatus[q.id] = 'not-visited';
-            });
-            currentQuestionIndex = 0;
-            timeRemaining = 3600;
-            saveSessionState();
+        function resumeExam() {
+            switchScreen('examScreen');
+            document.getElementById('headerCandidateId').textContent = examState.candidateId;
+            renderQuestion();
+            renderPalette();
+            startTimer();
         }
 
-        function saveSessionState() {
-            if (!activeSessionKey || examSubmitted) return;
-            const state = {
-                questions,
-                userAnswers,
-                questionStatus,
-                currentQuestionIndex,
-                timeRemaining
-            };
-            localStorage.setItem(activeSessionKey, JSON.stringify(state));
-        }
-
-        let timerStartTime = null;
-        let initialDuration = 3600;
-
+        /* --- TIMER MANAGEMENT --- */
         function startTimer() {
-            if (timerInterval) clearInterval(timerInterval);
+            if (examState.timerInterval) clearInterval(examState.timerInterval);
 
-            const sessionTimerKey = `${activeSessionKey}_timer_start`;
-            const storedStartTime = localStorage.getItem(sessionTimerKey);
-            const savedStateStr = localStorage.getItem(activeSessionKey);
-            let savedTime = 3600;
-            if(savedStateStr) {
-                try {
-                    savedTime = JSON.parse(savedStateStr).timeRemaining;
-                } catch(e) {}
-            }
-
-            if (!storedStartTime) {
-                timerStartTime = Date.now();
-                initialDuration = savedTime;
-                localStorage.setItem(sessionTimerKey, timerStartTime);
-                localStorage.setItem(`${activeSessionKey}_duration`, initialDuration);
-            } else {
-                timerStartTime = parseInt(storedStartTime, 10);
-                initialDuration = parseInt(localStorage.getItem(`${activeSessionKey}_duration`) || '3600', 10);
-            }
-
-            updateTimerDisplay();
-
-            timerInterval = setInterval(() => {
-                const elapsedSeconds = Math.floor((Date.now() - timerStartTime) / 1000);
-                timeRemaining = initialDuration - elapsedSeconds;
-
-                if (timeRemaining <= 0) {
-                    timeRemaining = 0;
-                    updateTimerDisplay();
-                    clearInterval(timerInterval);
-                    autoSubmitExamination();
+            examState.timerInterval = setInterval(() => {
+                if (examState.timerSeconds <= 0) {
+                    clearInterval(examState.timerInterval);
+                    alert("Time is over. Your examination is being submitted automatically.");
+                    executeFinalSubmission();
                     return;
                 }
+                examState.timerSeconds--;
                 updateTimerDisplay();
-                saveSessionState();
+                saveExamState();
             }, 1000);
         }
 
         function updateTimerDisplay() {
-            const mins = Math.floor(timeRemaining / 60);
-            const secs = timeRemaining % 60;
-            const displayStr = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-            const timerEl = document.getElementById('timer-display');
-            if (timerEl) {
-                timerEl.textContent = displayStr;
-            }
+            const hrs = Math.floor(examState.timerSeconds / 3600);
+            const mins = Math.floor((examState.timerSeconds % 3600) / 60);
+            const secs = examState.timerSeconds % 60;
+            const display = `${String(hrs).padStart(2, '0')} : ${String(mins).padStart(2, '0')} : ${String(secs).padStart(2, '0')}`;
+            document.getElementById('timerDisplay').textContent = display;
         }
 
-        function loadQuestion(index) {
-            currentQuestionIndex = index;
-            const q = questions[currentQuestionIndex];
-            
-            document.getElementById('question-number-tag').textContent = `Question ${currentQuestionIndex + 1} of 100`;
-            document.getElementById('question-title-text').textContent = q.question;
+        /* --- QUESTION RENDERING & NAVIGATION --- */
+        function renderQuestion() {
+            const idx = examState.currentQuestion;
+            const q = examState.questions[idx];
 
-            if (questionStatus[q.id] === 'not-visited') {
-                questionStatus[q.id] = 'visited-not-answered';
-            }
+            examState.visited[idx] = true;
 
-            const optionsContainer = document.getElementById('options-container');
-            optionsContainer.innerHTML = '';
+            document.getElementById('questionCounter').textContent = `Question ${idx + 1} of 100`;
+            document.getElementById('questionText').textContent = q.question;
 
+            const optionsListEl = document.getElementById('optionsList');
+            optionsListEl.innerHTML = '';
+
+            const optionLetters = ['A', 'B', 'C', 'D'];
             q.options.forEach((optText, optIdx) => {
-                const isSelected = userAnswers[q.id] === optIdx;
-                const optDiv = document.createElement('div');
-                optDiv.className = `option-item ${isSelected ? 'selected' : ''}`;
+                const isSelected = examState.answers[idx] === optIdx;
+                const card = document.createElement('div');
+                card.className = `option-card ${isSelected ? 'selected' : ''}`;
+                card.onclick = () => selectOption(optIdx);
 
-                const input = document.createElement('input');
-                input.type = 'radio';
-                input.name = 'q_opt';
-                input.id = `opt_${optIdx}`;
-                if (isSelected) input.checked = true;
-                input.onchange = () => selectOption(optIdx);
-
-                const label = document.createElement('label');
-                label.htmlFor = `opt_${optIdx}`;
-                label.style.cursor = 'pointer';
-                label.style.flex = '1';
-                label.textContent = optText;
-
-                optDiv.appendChild(input);
-                optDiv.appendChild(label);
-
-                optDiv.onclick = (e) => {
-                    if (e.target.tagName !== 'INPUT') {
-                        input.checked = true;
-                    }
-                    selectOption(optIdx);
-                };
-
-                optionsContainer.appendChild(optDiv);
+                card.innerHTML = `
+                    <div class="option-marker">${optionLetters[optIdx]}</div>
+                    <div style="flex:1;">${optText}</div>
+                `;
+                optionsListEl.appendChild(card);
             });
 
-            updatePaletteUI();
-            saveSessionState();
+            renderPalette();
+            saveExamState();
         }
 
         function selectOption(optIdx) {
-            const q = questions[currentQuestionIndex];
-            userAnswers[q.id] = optIdx;
-            
-            if (questionStatus[q.id] === 'marked') {
-                questionStatus[q.id] = 'answered-marked';
-            } else {
-                questionStatus[q.id] = 'answered';
-            }
-            updatePaletteUI();
-            
-            document.querySelectorAll('.option-item').forEach((el, idx) => {
-                if (idx === optIdx) el.classList.add('selected');
-                else el.classList.remove('selected');
-            });
-            saveSessionState();
-        }
-
-        function clearResponse() {
-            const q = questions[currentQuestionIndex];
-            delete userAnswers[q.id];
-            if (questionStatus[q.id] === 'answered-marked') {
-                questionStatus[q.id] = 'marked';
-            } else {
-                questionStatus[q.id] = 'visited-not-answered';
-            }
-            loadQuestion(currentQuestionIndex);
+            const idx = examState.currentQuestion;
+            examState.answers[idx] = optIdx;
+            renderQuestion();
         }
 
         function saveAndNext() {
-            if (currentQuestionIndex < questions.length - 1) {
-                loadQuestion(currentQuestionIndex + 1);
+            if (examState.currentQuestion < examState.questions.length - 1) {
+                examState.currentQuestion++;
+                renderQuestion();
             }
         }
 
         function markForReviewAndNext() {
-            const q = questions[currentQuestionIndex];
-            if (userAnswers[q.id] !== undefined) {
-                questionStatus[q.id] = 'answered-marked';
+            const idx = examState.currentQuestion;
+            examState.markedForReview[idx] = true;
+            if (examState.currentQuestion < examState.questions.length - 1) {
+                examState.currentQuestion++;
+                renderQuestion();
             } else {
-                questionStatus[q.id] = 'marked';
-            }
-            if (currentQuestionIndex < questions.length - 1) {
-                loadQuestion(currentQuestionIndex + 1);
-            } else {
-                updatePaletteUI();
+                renderPalette();
+                saveExamState();
             }
         }
 
-        function previousQuestion() {
-            if (currentQuestionIndex > 0) {
-                loadQuestion(currentQuestionIndex - 1);
+        function clearResponse() {
+            const idx = examState.currentQuestion;
+            delete examState.answers[idx];
+            delete examState.markedForReview[idx];
+            renderQuestion();
+        }
+
+        function navigateQuestion(direction) {
+            const newIdx = examState.currentQuestion + direction;
+            if (newIdx >= 0 && newIdx < examState.questions.length) {
+                examState.currentQuestion = newIdx;
+                renderQuestion();
             }
         }
 
-        function jumpToQuestion(index) {
-            loadQuestion(index);
+        function jumpToQuestion(idx) {
+            examState.currentQuestion = idx;
+            renderQuestion();
         }
 
-        function initPalette() {
-            const grid = document.getElementById('palette-grid');
+        /* --- QUESTION PALETTE --- */
+        function renderPalette() {
+            const grid = document.getElementById('paletteGrid');
             grid.innerHTML = '';
-            questions.forEach((q, idx) => {
-                const btn = document.createElement('button');
-                btn.className = 'palette-btn not-visited';
-                btn.id = `pal_btn_${idx}`;
-                btn.textContent = idx + 1;
-                btn.onclick = () => jumpToQuestion(idx);
-                grid.appendChild(btn);
-            });
-            updatePaletteUI();
-        }
 
-        function updatePaletteUI() {
-            questions.forEach((q, idx) => {
-                const btn = document.getElementById(`pal_btn_${idx}`);
-                if (!btn) return;
-                
-                const status = questionStatus[q.id];
+            for (let i = 0; i < examState.questions.length; i++) {
+                const btn = document.createElement('button');
                 btn.className = 'palette-btn';
-                
-                if (idx === currentQuestionIndex) {
-                    btn.classList.add('current');
+                btn.textContent = i + 1;
+                btn.onclick = () => jumpToQuestion(i);
+
+                const isAnswered = examState.answers[i] !== undefined;
+                const isMarked = examState.markedForReview[i] === true;
+                const isVisited = examState.visited[i] === true;
+                const isCurrent = examState.currentQuestion === i;
+
+                if (isCurrent) btn.classList.add('current');
+
+                if (isAnswered && isMarked) {
+                    btn.classList.add('answered-marked');
+                } else if (isAnswered) {
+                    btn.classList.add('answered');
+                } else if (isMarked) {
+                    btn.classList.add('marked');
+                } else if (isVisited) {
+                    btn.classList.add('unanswered');
+                } else {
+                    btn.classList.add('not-visited');
                 }
 
-                if (status === 'not-visited') btn.classList.add('not-visited');
-                else if (status === 'visited-not-answered') btn.classList.add('visited-not-answered');
-                else if (status === 'answered') btn.classList.add('answered');
-                else if (status === 'marked') btn.classList.add('marked');
-                else if (status === 'answered-marked') btn.classList.add('answered-marked');
-            });
+                grid.appendChild(btn);
+            }
         }
 
-        function openSubmitModal() {
-            if (examSubmitted) return;
-            
-            let answeredCount = 0;
-            let notAnsweredCount = 0;
-            let markedCount = 0;
-            let notVisitedCount = 0;
+        /* --- SUBMISSION & RESULT --- */
+        function confirmSubmitModal() {
+            let answered = 0, unanswered = 0, marked = 0, notVisited = 0;
 
-            questions.forEach(q => {
-                const s = questionStatus[q.id];
-                if (s === 'answered' || s === 'answered-marked') answeredCount++;
-                if (s === 'visited-not-answered') notAnsweredCount++;
-                if (s === 'marked') markedCount++;
-                if (s === 'not-visited') notVisitedCount++;
-            });
+            for (let i = 0; i < examState.questions.length; i++) {
+                const ans = examState.answers[i] !== undefined;
+                const mrk = examState.markedForReview[i] === true;
+                const vst = examState.visited[i] === true;
 
-            const statsBox = document.getElementById('modal-stats-box');
-            statsBox.innerHTML = `
-                <div><span>Answered:</span> <strong>${answeredCount}</strong></div>
-                <div><span>Not Answered:</span> <strong>${notAnsweredCount}</strong></div>
-                <div><span>Marked for Review:</span> <strong>${markedCount}</strong></div>
-                <div><span>Not Visited:</span> <strong>${notVisitedCount}</strong></div>
-                <div><span>Total Questions:</span> <strong>100</strong></div>
-            `;
+                if (ans) answered++;
+                if (!ans && vst) unanswered++;
+                if (mrk) marked++;
+                if (!vst) notVisited++;
+            }
 
-            document.getElementById('submit-modal').style.display = 'flex';
+            document.getElementById('statAnswered').textContent = answered;
+            document.getElementById('statUnanswered').textContent = unanswered;
+            document.getElementById('statMarked').textContent = marked;
+            document.getElementById('statNotVisited').textContent = notVisited;
+
+            document.getElementById('submitModal').style.display = 'flex';
         }
 
         function closeSubmitModal() {
-            document.getElementById('submit-modal').style.display = 'none';
+            document.getElementById('submitModal').style.display = 'none';
         }
 
-        function confirmFinalSubmission() {
-            if (examSubmitted) return;
-            examSubmitted = true;
+        function executeFinalSubmission() {
             closeSubmitModal();
-            if (timerInterval) clearInterval(timerInterval);
+            if (examState.timerInterval) clearInterval(examState.timerInterval);
+            examState.submitted = true;
+            saveExamState();
 
             let correct = 0;
             let attempted = 0;
 
-            questions.forEach(q => {
-                if (userAnswers[q.id] !== undefined) {
+            examState.questions.forEach((q, idx) => {
+                if (examState.answers[idx] !== undefined) {
                     attempted++;
-                    if (userAnswers[q.id] === q.answer) {
+                    if (examState.answers[idx] === q.answer) {
                         correct++;
                     }
                 }
             });
 
             const incorrect = attempted - correct;
-            const unattempted = 100 - attempted;
             const marksObtained = correct;
-            const percentage = correct;
+            const percentage = ((marksObtained / 100) * 100).toFixed(2);
 
-            document.getElementById('score-val').textContent = marksObtained;
-            document.getElementById('res-percentage').textContent = `${percentage}%`;
-            document.getElementById('res-attempted').textContent = attempted;
-            document.getElementById('res-correct').textContent = correct;
-            document.getElementById('res-incorrect').textContent = incorrect;
-            document.getElementById('res-unattempted').textContent = unattempted;
+            document.getElementById('resMarks').textContent = `${marksObtained} / 100`;
+            document.getElementById('resPercentage').textContent = `${percentage}%`;
+            document.getElementById('resCorrect').textContent = correct;
+            document.getElementById('resIncorrect').textContent = incorrect;
 
-            const remarkEl = document.getElementById('performance-remark');
-            if (marksObtained >= 85) {
-                remarkEl.textContent = "Outstanding performance! Expert mastery of Adobe Photoshop tools and options.";
-            } else if (marksObtained >= 60) {
-                remarkEl.textContent = "Good performance! Solid technical knowledge of Photoshop workflows.";
-            } else if (marksObtained >= 40) {
-                remarkEl.textContent = "Fair performance. Review tool properties, shortcuts, and deep options.";
-            } else {
-                remarkEl.textContent = "Needs improvement. Thorough study of Adobe Photoshop tools recommended.";
+            document.getElementById('performanceText').textContent = 
+                `Examination completed successfully. You attempted ${attempted} out of 100 questions with ${correct} correct answers.`;
+
+            localStorage.removeItem('cbt_exam_state_ps');
+            switchScreen('resultScreen');
+        }
+
+        /* --- LOCAL STORAGE & REFRESH PROTECTION --- */
+        function saveExamState() {
+            if (!examState.submitted) {
+                localStorage.setItem('cbt_exam_state_ps', JSON.stringify(examState));
             }
-
-            localStorage.removeItem(activeSessionKey);
-            localStorage.removeItem(`${activeSessionKey}_timer_start`);
-            localStorage.removeItem(`${activeSessionKey}_duration`);
-
-            switchScreen('result-screen');
         }
 
-        function autoSubmitExamination() {
-            if (examSubmitted) return;
-            alert("Examination time has expired. Your test will be submitted automatically.");
-            confirmFinalSubmission();
+        window.addEventListener('beforeunload', (e) => {
+            if (document.getElementById('examScreen').classList.contains('active') && !examState.submitted) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        /* --- FULLSCREEN --- */
+        function requestFullscreen() {
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen().catch(err => console.log(err));
+            }
+            document.getElementById('fullscreenBanner').style.display = 'none';
         }
 
-        function restartPortal() {
-            localStorage.clear();
-            window.location.reload();
-        }
-
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen().catch(err => {});
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
+        window.onload = function() {
+            const savedState = localStorage.getItem('cbt_exam_state_ps');
+            if (savedState) {
+                try {
+                    const parsed = JSON.parse(savedState);
+                    if (parsed && !parsed.submitted && parsed.candidateId) {
+                        examState = parsed;
+                        document.getElementById('lblCandidateId').textContent = examState.candidateId;
+                        switchScreen('instructionScreen');
+                        document.getElementById('readInstructions').checked = true;
+                        toggleStartButton();
+                    }
+                } catch (err) {
+                    console.error(err);
                 }
             }
-        }
+        };
     </script>
 </body>
 </html>
